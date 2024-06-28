@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Compra</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Compra</h1>
+        <form action="/compras/actualizar" method="post">
+            <% compras.forEach(compra => { %>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= compra.nombre_producto %></h5>
+                            <p class="card-text"><strong>Precio:</strong> <%= compra.precio %></p>
+                            <p class="card-text">
+                                <strong>Cantidad:</strong>
+                                <input type="number" name="compras[<%= compra.id %>][cantidad]" value="<%= compra.cantidad %>" min="1" max="9999">
+                            </p>
+                            <input type="hidden" name="compras[<%= compra.id %>][id]" value="<%= compra.id %>">
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success mt-3">Guardar Cambios</button>
+                <a href="/compras" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
